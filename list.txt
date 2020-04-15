@@ -1,0 +1,15 @@
+started:
+board
+
+
+needed:
+pieces
+game rules
+make multiplayer
+make sure it workd on pi
+
+it display needs to be altered for it to work on pi-need to document it in program/repository
+
+
+if time:
+ai
