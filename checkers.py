@@ -5,9 +5,7 @@ class Board(Frame):
     def __init__(self):
         Frame.__init__(self)
 
-        self.initUI()
-
-            
+        self.initUI() 
 
 
     def initUI(self):
@@ -18,103 +16,96 @@ class Board(Frame):
         canvas = Canvas(self)
 
         #### ROW 1 ####
-        canvas.create_rectangle(30, 10, 90, 80, outline="black", fill="black")
-        canvas.create_rectangle(90, 10, 150, 80, outline="white", fill="white")
-        canvas.create_rectangle(150, 10, 210, 80, outline="black", fill="black")
-        canvas.create_rectangle(210, 10, 270, 80, outline="white", fill="white")
-        canvas.create_rectangle(270, 10, 330, 80, outline="black", fill="black")
-        canvas.create_rectangle(330, 10, 390, 80, outline="white", fill="white")
-        canvas.create_rectangle(390, 10, 450, 80, outline="black", fill="black")
-        canvas.create_rectangle(450, 10, 510, 80, outline="white", fill="white")
+        canvas.create_rectangle(30, 10, 122, 62, outline="black", fill="black")
+        canvas.create_rectangle(122, 10, 214, 62, outline="white", fill="white")
+        canvas.create_rectangle(214, 10, 306, 62, outline="black", fill="black")
+        canvas.create_rectangle(306, 10, 398, 62, outline="white", fill="white")
+        canvas.create_rectangle(398, 10, 490, 62, outline="black", fill="black")
+        canvas.create_rectangle(490, 10, 582, 62, outline="white", fill="white")
+        canvas.create_rectangle(582, 10, 674, 62, outline="black", fill="black")
+        canvas.create_rectangle(674, 10, 766, 62, outline="white", fill="white")
         
 
         #### ROW 2 ####
-        canvas.create_rectangle(30, 80, 90, 150, outline="white", fill="white")
-        canvas.create_rectangle(90, 80, 150, 150, outline="black", fill="black")
-        canvas.create_rectangle(150, 80, 210, 150, outline="white", fill="white")
-        canvas.create_rectangle(210, 80, 270, 150, outline="black", fill="black")
-        canvas.create_rectangle(270, 80, 330, 150, outline="white", fill="white")
-        canvas.create_rectangle(330, 80, 390, 150, outline="black", fill="black")
-        canvas.create_rectangle(390, 80, 450, 150, outline="white", fill="white")
-        canvas.create_rectangle(450, 80, 510, 150, outline="black", fill="black")
+        canvas.create_rectangle(30, 62, 122, 114, outline="white", fill="white")
+        canvas.create_rectangle(122, 62, 214, 114, outline="black", fill="black")
+        canvas.create_rectangle(214, 62, 306, 114, outline="white", fill="white")
+        canvas.create_rectangle(306, 62, 398, 114, outline="black", fill="black")
+        canvas.create_rectangle(398, 62, 490, 114, outline="white", fill="white")
+        canvas.create_rectangle(490, 62, 582, 114, outline="black", fill="black")
+        canvas.create_rectangle(582, 62, 674, 114, outline="white", fill="white")
+        canvas.create_rectangle(674, 62, 766, 114, outline="black", fill="black")
 
 
         #### ROW 3 ####
-        canvas.create_rectangle(30, 150, 90, 220, outline="black", fill="black")
-        canvas.create_rectangle(90, 150, 150, 220, outline="white", fill="white")
-        canvas.create_rectangle(150, 150, 210, 220, outline="black", fill="black")
-        canvas.create_rectangle(210, 150, 270, 220, outline="white", fill="white")
-        canvas.create_rectangle(270, 150, 330, 220, outline="black", fill="black")
-        canvas.create_rectangle(330, 150, 390, 220, outline="white", fill="white")
-        canvas.create_rectangle(390, 150, 450, 220, outline="black", fill="black")
-        canvas.create_rectangle(450, 150, 510, 220, outline="white", fill="white")
+        canvas.create_rectangle(30, 114, 122, 166, outline="black", fill="black")
+        canvas.create_rectangle(122, 114, 214, 166, outline="white", fill="white")
+        canvas.create_rectangle(214, 114, 306, 166, outline="black", fill="black")
+        canvas.create_rectangle(306, 114, 398, 166, outline="white", fill="white")
+        canvas.create_rectangle(398, 114, 490, 166, outline="black", fill="black")
+        canvas.create_rectangle(490, 114, 582, 166, outline="white", fill="white")
+        canvas.create_rectangle(582, 114, 674, 166, outline="black", fill="black")
+        canvas.create_rectangle(674, 114, 766, 166, outline="white", fill="white")
 
         #### ROW 4 ####
-        canvas.create_rectangle(30, 220, 90, 290, outline="white", fill="white")
-        canvas.create_rectangle(90, 220, 150, 290, outline="black", fill="black")
-        canvas.create_rectangle(150, 220, 210, 290, outline="white", fill="white")
-        canvas.create_rectangle(210, 220, 270, 290, outline="black", fill="black")
-        canvas.create_rectangle(270, 220, 330, 290, outline="white", fill="white")
-        canvas.create_rectangle(330, 220, 390, 290, outline="black", fill="black")
-        canvas.create_rectangle(390, 220, 450, 290, outline="white", fill="white")
-        canvas.create_rectangle(450, 220, 510, 290, outline="black", fill="black")
+        canvas.create_rectangle(30, 166, 122, 218, outline="white", fill="white")
+        canvas.create_rectangle(122, 166, 214, 218, outline="black", fill="black")
+        canvas.create_rectangle(214, 166, 306, 218, outline="white", fill="white")
+        canvas.create_rectangle(306, 166, 398, 218, outline="black", fill="black")
+        canvas.create_rectangle(398, 166, 490, 218, outline="white", fill="white")
+        canvas.create_rectangle(490, 166, 582, 218, outline="black", fill="black")
+        canvas.create_rectangle(582, 166, 674, 218, outline="white", fill="white")
+        canvas.create_rectangle(674, 166, 766, 218, outline="black", fill="black")
 
         #### ROW 5 ####
-        canvas.create_rectangle(30, 290, 90, 360, outline="black", fill="black")
-        canvas.create_rectangle(90, 290, 150, 360, outline="white", fill="white")
-        canvas.create_rectangle(150, 290, 210, 360, outline="black", fill="black")
-        canvas.create_rectangle(210, 290, 270, 360, outline="white", fill="white")
-        canvas.create_rectangle(270, 290, 330, 360, outline="black", fill="black")
-        canvas.create_rectangle(330, 290, 390, 360, outline="white", fill="white")
-        canvas.create_rectangle(390, 290, 450, 360, outline="black", fill="black")
-        canvas.create_rectangle(450, 290, 510, 360, outline="white", fill="white")
+        canvas.create_rectangle(30, 218, 122, 270, outline="black", fill="black")
+        canvas.create_rectangle(122, 218, 214, 270, outline="white", fill="white")
+        canvas.create_rectangle(214, 218, 306, 270, outline="black", fill="black")
+        canvas.create_rectangle(306, 218, 398, 270, outline="white", fill="white")
+        canvas.create_rectangle(398, 218, 490, 270, outline="black", fill="black")
+        canvas.create_rectangle(490, 218, 582, 270, outline="white", fill="white")
+        canvas.create_rectangle(582, 218, 674, 270, outline="black", fill="black")
+        canvas.create_rectangle(674, 218, 766, 270, outline="white", fill="white")
 
         #### ROW 6 ####
-        canvas.create_rectangle(30, 360, 90, 430, outline="white", fill="white")
-        canvas.create_rectangle(90, 360, 150, 430, outline="black", fill="black")
-        canvas.create_rectangle(150, 360, 210, 430, outline="white", fill="white")
-        canvas.create_rectangle(210, 360, 270, 430, outline="black", fill="black")
-        canvas.create_rectangle(270, 360, 330, 430, outline="white", fill="white")
-        canvas.create_rectangle(330, 360, 390, 430, outline="black", fill="black")
-        canvas.create_rectangle(390, 360, 450, 430, outline="white", fill="white")
-        canvas.create_rectangle(450, 360, 510, 430, outline="black", fill="black")
+        canvas.create_rectangle(30, 270, 122, 322, outline="white", fill="white")
+        canvas.create_rectangle(122, 270, 214, 322, outline="black", fill="black")
+        canvas.create_rectangle(214, 270, 306, 322, outline="white", fill="white")
+        canvas.create_rectangle(306, 270, 398, 322, outline="black", fill="black")
+        canvas.create_rectangle(398, 270, 490, 322, outline="white", fill="white")
+        canvas.create_rectangle(490, 270, 582, 322, outline="black", fill="black")
+        canvas.create_rectangle(582, 270, 674, 322, outline="white", fill="white")
+        canvas.create_rectangle(674, 270, 766, 322, outline="black", fill="black")
 
         #### ROW 7 ####
-        canvas.create_rectangle(30, 430, 90, 500, outline="black", fill="black")
-        canvas.create_rectangle(90, 430, 150, 500, outline="white", fill="white")
-        canvas.create_rectangle(150, 430, 210, 500, outline="black", fill="black")
-        canvas.create_rectangle(210, 430, 270, 500, outline="white", fill="white")
-        canvas.create_rectangle(270, 430, 330, 500, outline="black", fill="black")
-        canvas.create_rectangle(330, 430, 390, 500, outline="white", fill="white")
-        canvas.create_rectangle(390, 430, 450, 500, outline="black", fill="black")
-        canvas.create_rectangle(450, 430, 510, 500, outline="white", fill="white")
+        canvas.create_rectangle(30, 322, 122, 374, outline="black", fill="black")
+        canvas.create_rectangle(122, 322, 214, 374, outline="white", fill="white")
+        canvas.create_rectangle(214, 322, 306, 374, outline="black", fill="black")
+        canvas.create_rectangle(306, 322, 398, 374, outline="white", fill="white")
+        canvas.create_rectangle(398, 322, 490, 374, outline="black", fill="black")
+        canvas.create_rectangle(490, 322, 582, 374, outline="white", fill="white")
+        canvas.create_rectangle(582, 322, 674, 374, outline="black", fill="black")
+        canvas.create_rectangle(674, 322, 766, 374, outline="white", fill="white")
 
 
         #### ROW 8 ####
-        canvas.create_rectangle(30, 500, 90, 570, outline="white", fill="white")
-        canvas.create_rectangle(90, 500, 150, 570, outline="black", fill="black")
-        canvas.create_rectangle(150, 500, 210, 570, outline="white", fill="white")
-        canvas.create_rectangle(210, 500, 270, 570, outline="black", fill="black")
-        canvas.create_rectangle(270, 500, 330, 570, outline="white", fill="white")
-        canvas.create_rectangle(330, 500, 390, 570, outline="black", fill="black")
-        canvas.create_rectangle(390, 500, 450, 570, outline="white", fill="white")
-        canvas.create_rectangle(450, 500, 510, 570, outline="black", fill="black")
-
+        canvas.create_rectangle(30, 374, 122, 424, outline="white", fill="white")
+        canvas.create_rectangle(122, 374, 214, 424, outline="black", fill="black")
+        canvas.create_rectangle(214, 374, 306, 424, outline="white", fill="white")
+        canvas.create_rectangle(306, 374, 398, 424, outline="black", fill="black")
+        canvas.create_rectangle(398, 374, 490, 424, outline="white", fill="white")
+        canvas.create_rectangle(490, 374, 582, 424, outline="black", fill="black")
+        canvas.create_rectangle(582, 374, 674, 424, outline="white", fill="white")
+        canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black")
 
         canvas.pack(fill=BOTH, expand=1)
-
-
-        
-
-
-
-
+    
 
 def main():
 
     root = Tk()
     ex = Board()
-    root.geometry("540x600+200+200")
+    root.geometry("800x425+200+200")
     root.mainloop()
 
 
