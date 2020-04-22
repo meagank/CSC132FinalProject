@@ -98,7 +98,7 @@ class Board(Frame):
         canvas.create_rectangle(582, 374, 674, 424, outline="white", fill="white")
         canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black")
 
-        canvas.pack(fill=BOTH, expand=1)
+        
 
 
     ##### RED CHECKER PIECES #####
@@ -149,7 +149,9 @@ class Board(Frame):
         b10 = canvas.create_oval(122, 374, 214, 424, outline="blue", fill="blue")
         b11 = canvas.create_oval(214, 374, 306, 424, outline="blue", fill="blue")
         b12 = canvas.create_oval(306, 374, 398, 424, outline="blue", fill="blue")        
-        
+
+
+        canvas.pack(fill=BOTH, expand=1)
 
 def main():
 
