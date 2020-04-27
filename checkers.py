@@ -153,7 +153,8 @@ class Board(Frame):
 
                
         canvas.pack(fill=BOTH, expand=1)
-        
+
+# determines player's turn        
 def playerTurn():
     # initialize counter to help determine player's turn
     counter = 0
