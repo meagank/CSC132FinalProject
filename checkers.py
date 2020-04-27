@@ -154,12 +154,32 @@ class Board(Frame):
                
         canvas.pack(fill=BOTH, expand=1)
         
+def playerTurn():
+    # initialize counter to help determine player's turn
+    counter = 0
+    if (counter % 2 == 0):
+        # display label with "Player 1's Turn"
+        r = Label(root, text="Player 1's Turn (Red)")
+        r.pack()
+        # wait for player to move checker piece
+        # increase counter by 1
+        counter += 1
 
+    else:
+        # display label with "Player 1's Turn"
+        b = Label(root, text="Player 2's Turn (Blue)")
+        b.pack()
+        # wait for player to move checker piece
+        # increase counter by 1
+        counter += 1
+    
 def main():
 
+    global root
     root = Tk()
     ex = Board()
     root.geometry("800x425+200+200")
+    playerTurn()
     root.mainloop()
 
 
