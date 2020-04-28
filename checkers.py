@@ -153,6 +153,45 @@ class Board(Frame):
 
                
         canvas.pack(fill=BOTH, expand=1)
+#make checker pieces move
+class Move:
+    def __init__(self, master = None):
+        self.master = master
+
+        #movement in x direction
+        self.x = 1
+        #movement in y direction
+        self.y = 0
+        #movement method to move pieces
+        self.movement()
+    def movement(self):
+        self.canvas.move(canvas.create_oval, self.x, self.y)
+        self.canvas.after(, self.movement)
+
+     #move in negative x direction 
+    def left(self, event): 
+        print(event.keysym) 
+        self.x = 
+        self.y = 
+      
+    #move in positive x direction 
+    def right(self, event): 
+        print(event.keysym) 
+        self.x = 
+        self.y = 
+      
+    #move in positive y direction 
+    def up(self, event): 
+        print(event.keysym) 
+        self.x = 
+        self.y = 
+      
+    #move in negative y direction 
+    def down(self, event): 
+        print(event.keysym) 
+        self.x = 
+        self.y = 
+        
 
 # determines player's turn        
 def playerTurn():
