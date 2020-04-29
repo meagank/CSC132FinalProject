@@ -99,99 +99,102 @@ class Board(Frame):
         canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black")
 
         
-
+        self._drag_data = {"x": 0, "y": 0, "item": None}
 
     ##### RED CHECKER PIECES #####
         
         #### ROW 1 ####
-        r1 = canvas.create_oval(50, 12, 102, 60, outline="red", fill="red")
-        r2 = canvas.create_oval(234, 12, 286, 60, outline="red", fill="red")
-        r3 = canvas.create_oval(418, 12, 470, 60, outline="red", fill="red")
-        r4 = canvas.create_oval(602, 12, 654, 60, outline="red", fill="red")
+        r1 = canvas.create_oval(50, 12, 102, 60, outline="red", fill="red", tags = "oval")
+        r2 = canvas.create_oval(234, 12, 286, 60, outline="red", fill="red", tags = "oval")
+        r3 = canvas.create_oval(418, 12, 470, 60, outline="red", fill="red", tags = "oval")
+        r4 = canvas.create_oval(602, 12, 654, 60, outline="red", fill="red", tags = "oval")
         
         
 
         #### ROW 2 ####
-        r5 = canvas.create_oval(142, 64, 194, 112, outline="red", fill="red")
-        r6 = canvas.create_oval(326, 64, 378, 112, outline="red", fill="red")
-        r7 = canvas.create_oval(510, 64, 562, 112, outline="red", fill="red")
-        r8 = canvas.create_oval(694, 64, 746, 112, outline="red", fill="red")
+        r5 = canvas.create_oval(142, 64, 194, 112, outline="red", fill="red", tags = "oval")
+        r6 = canvas.create_oval(326, 64, 378, 112, outline="red", fill="red", tags = "oval")
+        r7 = canvas.create_oval(510, 64, 562, 112, outline="red", fill="red", tags = "oval")
+        r8 = canvas.create_oval(694, 64, 746, 112, outline="red", fill="red", tags = "oval")
         
 
 
         #### ROW 3 ####
-        r9 = canvas.create_oval(50, 116, 102, 164, outline="red", fill="red")
-        r10 = canvas.create_oval(234, 116, 286, 164, outline="red", fill="red")
-        r11 = canvas.create_oval(418, 116, 470, 164, outline="red", fill="red")
-        r12 = canvas.create_oval(602, 116, 654, 164, outline="red", fill="red")
+        r9 = canvas.create_oval(50, 116, 102, 164, outline="red", fill="red", tags = "oval")
+        r10 = canvas.create_oval(234, 116, 286, 164, outline="red", fill="red", tags = "oval")
+        r11 = canvas.create_oval(418, 116, 470, 164, outline="red", fill="red", tags = "oval")
+        r12 = canvas.create_oval(602, 116, 654, 164, outline="red", fill="red", tags = "oval")
 
 
     ##### BLUE CHECKER PIECES #####
         
         #### ROW 6 ####
-        b1 = canvas.create_oval(142, 272, 194, 320, outline="blue", fill="blue")
-        b2 = canvas.create_oval(326, 272, 378, 320, outline="blue", fill="blue")
-        b3 = canvas.create_oval(510, 272, 562, 320, outline="blue", fill="blue")
-        b4 = canvas.create_oval(694, 272, 746, 320, outline="blue", fill="blue")
+        b1 = canvas.create_oval(142, 272, 194, 320, outline="blue", fill="blue", tags = "oval")
+        b2 = canvas.create_oval(326, 272, 378, 320, outline="blue", fill="blue", tags = "oval")
+        b3 = canvas.create_oval(510, 272, 562, 320, outline="blue", fill="blue", tags = "oval")
+        b4 = canvas.create_oval(694, 272, 746, 320, outline="blue", fill="blue", tags = "oval")
         
         
 
         #### ROW 7 ####
-        b5 = canvas.create_oval(50, 324, 102, 372, outline="blue", fill="blue")
-        b6 = canvas.create_oval(234, 324, 286, 372, outline="blue", fill="blue")
-        b7 = canvas.create_oval(418, 324, 470, 372, outline="blue", fill="blue")
-        b8 = canvas.create_oval(602, 324, 654, 372, outline="blue", fill="blue")
+        b5 = canvas.create_oval(50, 324, 102, 372, outline="blue", fill="blue", tags = "oval")
+        b6 = canvas.create_oval(234, 324, 286, 372, outline="blue", fill="blue", tags = "oval")
+        b7 = canvas.create_oval(418, 324, 470, 372, outline="blue", fill="blue", tags = "oval")
+        b8 = canvas.create_oval(602, 324, 654, 372, outline="blue", fill="blue", tags = "oval")
         
 
 
         #### ROW 8 ####
-        b9 = canvas.create_oval(142, 376, 194, 422, outline="blue", fill="blue")
-        b10 = canvas.create_oval(326, 376, 378, 422, outline="blue", fill="blue")
-        b11 = canvas.create_oval(510, 376, 562, 422, outline="blue", fill="blue")
-        b12 = canvas.create_oval(694, 376, 746, 422, outline="blue", fill="blue")
+        b9 = canvas.create_oval(142, 376, 194, 422, outline="blue", fill="blue", tags = "oval")
+        b10 = canvas.create_oval(326, 376, 378, 422, outline="blue", fill="blue", tags = "oval")
+        b11 = canvas.create_oval(510, 376, 562, 422, outline="blue", fill="blue", tags = "oval")
+        b12 = canvas.create_oval(694, 376, 746, 422, outline="blue", fill="blue", tags = "oval")
 
 
                
         canvas.pack(fill=BOTH, expand=1)
-#make checker pieces move
-class Move(object):
-    def __init__(self, master = None):
-        self.master = master
 
-        #movement in x direction
-        self.x = 1
-        #movement in y direction
-        self.y = 0
-        #movement method to move pieces
-        self.movement()
-    def movement(self):
-        self.canvas.move(canvas.create_oval, self.x, self.y)
-        self.canvas.after(100, self.movement)
-
-     #move in negative x direction 
-    def left(self, event): 
-        print(event.keysym) 
-        self.x = -5
-        self.y = 0
-      
-    #move in positive x direction 
-    def right(self, event): 
-        print(event.keysym) 
-        self.x = 5
-        self.y = 0
-      
-    #move in positive y direction 
-    def up(self, event): 
-        print(event.keysym) 
-        self.x = 0
-        self.y = -5
-      
-    #move in negative y direction 
-    def down(self, event): 
-        print(event.keysym) 
-        self.x = 0
-        self.y = 5
+        # add bindings for clicking, dragging, and releasing
+        canvas.tag_bind("oval", "<ButtonPress-1>", self.strtdrag)
+        canvas.tag_bind("oval", "<ButtonRelease-1>", self.stpdrag)
+        canvas.tag_bind("oval", "<B1-Motion>", self.drag)
         
+    def create_token(self, x, y, color):
+        ###Create a token at the given coordinate in the given color###
+        self.canvas.create_oval(
+            x - 25,
+            y - 25,
+            x + 25,
+            y + 25,
+            outline = color,
+            fill = color,
+            tags = ("oval",),
+        )
+
+    def strtdrag(self, event):
+        ###Begining drag of an object###
+        # record the item and its location
+        canvas._drag_data["item"] = self.canvas.find_closest(event.x, event.y)[0]
+        canvas._drag_data["x"] = event.x
+        canvas._drag_data["y"] = event.y
+
+    def stpdrag(self, event):
+        ###End drag of an object###
+        # reset the drag information
+        self._drag_data["item"] = None
+        self._drag_data["x"] = 0
+        self._drag_data["y"] = 0
+
+    def drag(self, event):
+        ###Handle dragging of an object###
+        # compute how much the mouse has moved
+        delta_x = event.x - self._drag_data["x"]
+        delta_y = event.y - self._drag_data["y"]
+        # move the object the appropriate amount
+        self.canvas.move(self._drag_data["item"], delta_x, delta_y)
+        # record the new position
+        self._drag_data["x"] = event.x
+        self._drag_data["y"] = event.y
 
 # determines player's turn        
 def playerTurn():
