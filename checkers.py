@@ -149,54 +149,44 @@ class Board(tk.Frame):
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self)
 
-        def playerTurn():
-            # initialize counter to help determine player's turn
-            counter = 0
-            if (counter % 2 == 0):
-                # display label reading "Player 1's Turn"
-                r = Label(root, text="Player 1's Turn (Red)")
-                r.pack()
-                # wait for player to press button which increments counter by 1
-                counter += 1
-            else:
-                # display label reading "Player 2's Turn"
-                b = self.master.Label(root, text="Player 2's Turn (Blue)")
-                b.pack()
-                # wait for player to press button which increments counter by 1
-                counter += 1
+    def playerTurn():
+        # initialize counter to help determine player's turn
+        counter = 0
+        if (counter % 2 == 0):
+            # display label reading "Player 1's Turn"
+            r = Label(root, text="Player 1's Turn (Red)")
+            r.pack()
+            # wait for player to press button which increments counter by 1
+            counter += 1
+        else:
+            # display label reading "Player 2's Turn"
+            b = self.master.Label(root, text="Player 2's Turn (Blue)")
+            b.pack()
+            # wait for player to press button which increments counter by 1
+            counter += 1
 
-    def create_token(self, x, y, color):
-        ### create a checker piece at the given coordinate in the given color ###
-        self.canvas.create_oval(
-            x - 25,
-            y - 25,
-            x + 25,
-            y + 25,
-            outline=color,
-            fill=color,
-            tags=("token",),
-        )
+    def createToken(self, x, y, color):
+        # create a checker piece at given coord
+        self.canvas.create_oval(x - 25, y - 25, x + 25, y + 25, outline=color, fill=color,tags=("token",),)
 
-    def strtdrag(self, event):
-        ### begin drag of a checker piece ###
-        # record the item and its location
+    def startDrag(self, event):
+        # begin drag of a checker piece and record location
         self._drag_data["item"] = self.canvas.find_closest(event.x, event.y)[0]
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
 
-    def stpdrag(self, event):
-        ### end drag of an object ###
-        # reset the drag information
+    def stopDrag(self, event):
+        # end drag of an object and information
         self._drag_data["item"] = None
         self._drag_data["x"] = 0
         self._drag_data["y"] = 0
 
     def drag(self, event):
-        ### handle dragging of an object ###
-        # compute how much the mouse has moved
+        # handle dragging of an object 
+        # determine move distance
         delta_x = event.x - self._drag_data["x"]
         delta_y = event.y - self._drag_data["y"]
-        # move the object the appropriate amount
+        # move the object 
         self.canvas.move(self._drag_data["item"], delta_x, delta_y)
         # record the new position
         self._drag_data["x"] = event.x
