@@ -101,47 +101,47 @@ class Board(tk.Frame):
         ##### RED CHECKER PIECES #####
         
         #### ROW 1 ####
-        r1 = self.create_token(76, 36, "red")
-        r2 = self.create_token(260, 36, "red")
-        r3 = self.create_token(444, 36, "red")
-        r4 = self.create_token(628, 36, "red")
+        r1 = self.createToken(76, 36, "red")
+        r2 = self.createToken(260, 36, "red")
+        r3 = self.createToken(444, 36, "red")
+        r4 = self.createToken(628, 36, "red")
 
         #### ROW 2 ####
-        r5 = self.create_token(168, 88, "red")
-        r6 = self.create_token(352, 88, "red")
-        r7 = self.create_token(536, 88, "red")
-        r8 = self.create_token(720, 88, "red")
+        r5 = self.createToken(168, 88, "red")
+        r6 = self.createToken(352, 88, "red")
+        r7 = self.createToken(536, 88, "red")
+        r8 = self.createToken(720, 88, "red")
         
         #### ROW 3 ####
-        r9 = self.create_token(76, 140, "red")
-        r10 = self.create_token(260, 140, "red")
-        r11 = self.create_token(444, 140, "red")
-        r12 = self.create_token(628, 140, "red")
+        r9 = self.createToken(76, 140, "red")
+        r10 = self.createToken(260, 140, "red")
+        r11 = self.createToken(444, 140, "red")
+        r12 = self.createToken(628, 140, "red")
         
 
         ##### BLUE CHECKER PIECES #####
 
         #### ROW 6 ####
-        b1 = self.create_token(168, 296, "blue")
-        b2 = self.create_token(352, 296, "blue")
-        b3 = self.create_token(536, 296, "blue")
-        b4 = self.create_token(720, 296, "blue")
+        b1 = self.createToken(168, 296, "blue")
+        b2 = self.createToken(352, 296, "blue")
+        b3 = self.createToken(536, 296, "blue")
+        b4 = self.createToken(720, 296, "blue")
 
         #### ROW 7 ####
-        b5 = self.create_token(76, 348, "blue")
-        b6 = self.create_token(260, 348, "blue")
-        b7 = self.create_token(444, 348, "blue")
-        b8 = self.create_token(628, 348, "blue")
+        b5 = self.createToken(76, 348, "blue")
+        b6 = self.createToken(260, 348, "blue")
+        b7 = self.createToken(444, 348, "blue")
+        b8 = self.createToken(628, 348, "blue")
 
         #### ROW 8 ####
-        b9 = self.create_token(168, 399, "blue")
-        b10 = self.create_token(352, 399, "blue")
-        b11 = self.create_token(536, 399, "blue")
-        b12 = self.create_token(720, 399, "blue")
+        b9 = self.createToken(168, 399, "blue")
+        b10 = self.createToken(352, 399, "blue")
+        b11 = self.createToken(536, 399, "blue")
+        b12 = self.createToken(720, 399, "blue")
 
         # add bindings for clicking, dragging and releasing
-        self.canvas.tag_bind("token", "<ButtonPress-1>", self.strtdrag)
-        self.canvas.tag_bind("token", "<ButtonRelease-1>", self.stpdrag)
+        self.canvas.tag_bind("token", "<ButtonPress-1>", self.startDrag)
+        self.canvas.tag_bind("token", "<ButtonRelease-1>", self.stopDrag)
         self.canvas.tag_bind("token", "<B1-Motion>", self.drag)
 
     def initUI(self):
