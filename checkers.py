@@ -139,7 +139,7 @@ class Board(tk.Frame):
         b11 = self.createToken(536, 399, "blue")
         b12 = self.createToken(720, 399, "blue")
 
-        # add bindings for clicking, dragging and releasing
+        # add bindings for clicking, dragging and releasing HEAD
         self.canvas.tag_bind("token", "<ButtonPress-1>", self.startDrag)
         self.canvas.tag_bind("token", "<ButtonRelease-1>", self.stopDrag)
         self.canvas.tag_bind("token", "<B1-Motion>", self.drag)
