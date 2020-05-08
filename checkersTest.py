@@ -1,6 +1,6 @@
 from Tkinter import *
 import Tkinter as tk
-#import tkinter.messagebox
+import tkinter.messagebox
 
 class Board(tk.Frame):
 

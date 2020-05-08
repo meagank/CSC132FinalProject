@@ -1,6 +1,7 @@
 from Tkinter import *
 import Tkinter as tk
 
+
 class Board(tk.Frame):
 
     def __init__(self, parent):
@@ -139,6 +140,8 @@ class Board(tk.Frame):
         b11 = self.createToken(536, 399, "blue")
         b12 = self.createToken(720, 399, "blue")
 
+
+
         # add bindings for clicking, dragging and releasing HEAD
         self.canvas.tag_bind("token", "<ButtonPress-1>", self.startDrag)
         self.canvas.tag_bind("token", "<ButtonRelease-1>", self.stopDrag)
@@ -148,7 +151,8 @@ class Board(tk.Frame):
         self.master.title("Checkers")
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self)
-
+       
+        
     def playerTurn():
         # initialize counter to help determine player's turn
         counter = 0
@@ -164,6 +168,7 @@ class Board(tk.Frame):
             b.pack()
             # wait for player to press button which increments counter by 1
             counter += 1
+            #button = Button(self, text = "Submit Turn", command = counter += 1)
 
     def createToken(self, x, y, color):
         # create a checker piece at given coord
@@ -215,6 +220,7 @@ class Board(tk.Frame):
 def main():
     root = tk.Tk()
     Board(root).pack(fill=BOTH, expand=1)
+    #button.pack()
     root.geometry("800x450+200+200")
     root.mainloop()
     
