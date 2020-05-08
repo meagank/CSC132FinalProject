@@ -1,10 +1,16 @@
 from Tkinter import *
 import Tkinter as tk
+#import tkinter.messagebox
 
 class Board(tk.Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, last_itm, was_moved, illegal):
         tk.Frame.__init__(self, parent)
+        
+        self.last_itm = last_itm
+        self.was_moved = was_moved
+        self.illegal = illegal
+        
         self.initUI()
 
         # create the checkerboard
@@ -149,21 +155,49 @@ class Board(tk.Frame):
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self)
 
-    def playerTurn():
+    def playerTurn(event):
+        if self.was_moved == True:
+            self.was_moved = False
+            
+        OnTokenButtonRelease(event)
+        curr_itm = canvas.find_nearest(event,x, event.y)[0]
+
+        same_color = False
+        if ((self.last_itm > 64 and self.last_itm < 77) and (curr_itm > 64 and curr_itm < 77)) and self.illegal != True:
+            same_color = True
+            tkinter.messagebox.showinfo(title = None, message = "Player 1's Turn (Red)")
+            if self.was_moved != True:
+                delta_x = init_data["x"] - event.x
+                delta_y = init_data["y"] - event.y
+                canvas.move(init_data["item"], delta_x, delta_y)
+                self.was_moved = True
+
+
+        elif ((self.last_itm > 76 and self.last_itm < 90) and (curr_itm > 76 and curr_itm < 90)) and self.illegal != True:
+            same_color = True
+            tkinter.messagebox.showinfo(title = None, message = "Player 2's Turn (Blue)")
+            if self.was_moved != True:
+                delta_x = init_data["x"] - event.x
+                delta_y = init_data["y"] - event.y
+                canvas.move(init_data["item"], delta_x, delta_y)
+                self.was_moved = True
+                
         # initialize counter to help determine player's turn
-        counter = 0
-        if (counter % 2 == 0):
-            # display label reading "Player 1's Turn"
-            r = Label(root, text="Player 1's Turn (Red)")
-            r.pack()
-            # wait for player to press button which increments counter by 1
-            counter += 1
-        else:
-            # display label reading "Player 2's Turn"
-            b = self.master.Label(root, text="Player 2's Turn (Blue)")
-            b.pack()
-            # wait for player to press button which increments counter by 1
-            counter += 1
+##        counter = 0
+##        if (counter % 2 == 0):
+##            # display label reading "Player 1's Turn"
+####            r = Label(root, text="Player 1's Turn (Red)")
+####            r.pack()
+##            tkinter.messagebox.showinfo(title = None, message = "Player 1's turn (Red)")
+##            # wait for player to press button which increments counter by 1
+##            counter += 1
+##        else:
+##            # display label reading "Player 2's Turn"
+####            b = self.master.Label(root, text="Player 2's Turn (Blue)")
+####            b.pack()
+##            tkinter.messagebox.showinfo(title = None, message = "Player 2's turn (Blue)")
+##            # wait for player to press button which increments counter by 1
+##            counter += 1
 
     def createToken(self, x, y, color):
         # create a checker piece at given coord
