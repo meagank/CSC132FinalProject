@@ -248,7 +248,7 @@ class Board(tk.Frame):
 
 def main():
     root = tk.Tk()
-    Board(root).pack(fill=BOTH, expand=1)
+    x = Board(root, [], 0, 0)
     root.geometry("800x450+200+200")
     root.mainloop()
     
