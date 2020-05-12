@@ -103,7 +103,52 @@ class Board(tk.Frame):
         # keep track of the coordinates of the checker pieces
         self._drag_data = {"x": 0, "y": 0, "item": None}
 
-        def RectDims(coords):
+        def Coords(objID):
+            coordinate = []
+
+            # row coordinate
+            if (objID >= 57):
+                coordinate.append(8)
+            elif (objID >= 49):
+                coordinate.append(7)
+            elif (objID >= 41):
+                coordinate.append(6)
+            elif (objID >= 33):
+                coordinate.append(5)
+            elif (objID >= 25):
+                coordinate.append(4)
+            elif (objID >= 17):
+                coordinate.append(3)
+            elif (objID >= 9):
+                coordinate.append(2)
+            else:
+                coordinate.append(1)
+
+
+            # column coordinate
+            temp = objID % 8
+            if (temp == 1):
+                coordinate.append(1)
+            elif (temp == 2):
+                coordinate.append(2)
+            elif (temp == 3):
+                coordinate.append(3)
+            elif (temp == 4):
+                coordinate.append(4)
+            elif (temp == 5):
+                coordinate.append(5)
+            elif (temp == 6):
+                coordinate.append(6)
+            elif (temp == 7):
+                coordinate.append(7)
+            else:
+                coordinate.append(8)
+
+            return coordinate
+
+            
+
+        def RectDims(coordinate):
             dims = []
             x1 = 0
             x2 = 0
@@ -114,7 +159,7 @@ class Board(tk.Frame):
             #configure dimensions
             while i < 9:
                 #X-coordinates
-                if coords[0] == i:
+                if coordinate[0] == i:
                     if i == 1:
                         x1 = 30
                         x2 = 122
@@ -141,7 +186,7 @@ class Board(tk.Frame):
                         x2 = 766
 
                 #Y-coordinates
-                if coords[1] == i:
+                if coordinate[1] == i:
                     if i == 1:
                         y1 = 10
                         y2 = 62
@@ -168,12 +213,12 @@ class Board(tk.Frame):
                         y2 = 424
                 i += 1
 
-        dims.append(x1)
-        dims.append(y1)
-        dims.append(x2)
-        dims.append(y2)
+            dims.append(x1)
+            dims.append(y1)
+            dims.append(x2)
+            dims.append(y2)
 
-        return dims
+            return dims
 
         # create the checker pieces
         ##### RED CHECKER PIECES #####
@@ -227,7 +272,8 @@ class Board(tk.Frame):
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self)
 
-    
+
+    '''
 
     def playerTurn(event):
         if self.was_moved == True:
@@ -258,23 +304,8 @@ class Board(tk.Frame):
                 canvas.move(init_data["item"], delta_x, delta_y)
                 self.was_moved = True
                 
-        # initialize counter to help determine player's turn
-##        counter = 0
-##        if (counter % 2 == 0):
-##            # display label reading "Player 1's Turn"
-####            r = Label(root, text="Player 1's Turn (Red)")
-####            r.pack()
-##            tkinter.messagebox.showinfo(title = None, message = "Player 1's turn (Red)")
-##            # wait for player to press button which increments counter by 1
-##            counter += 1
-##        else:
-##            # display label reading "Player 2's Turn"
-####            b = self.master.Label(root, text="Player 2's Turn (Blue)")
-####            b.pack()
-##            tkinter.messagebox.showinfo(title = None, message = "Player 2's turn (Blue)")
-##            # wait for player to press button which increments counter by 1
-##            counter += 1
-
+    '''
+    
     def createToken(self, x, y, color):
         # create a checker piece at given coord
         self.canvas.create_oval(x - 25, y - 25, x + 25, y + 25, outline=color, fill=color,tags=("token",),)
@@ -302,25 +333,27 @@ class Board(tk.Frame):
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
 
-##    def playerTurn():
-##        # initialize counter to help determine player's turn
-##        counter = 0
-##        if (counter % 2 == 0):
-##            # display label reading "Player 1's Turn"
-##            r = Label(root, text="Player 1's Turn (Red)")
-##            r.pack()
-##            # wait for player to complete turn
-##            ## something involving a button reading "Turn Completed" ##
-##            # increment counter by 1
-##            counter += 1
-##        else:
-##            # display label reading "Player 2's Turn"
-##            b = Label(root, text="Player 2's Turn (Blue)")
-##            b.pack()
-##            # wait for player to complete turn
-##            ## something involving a button reading "Turn Completed" ##
-##            # increment counter by 1
-##            counter += 1
+    '''
+    def playerTurn():
+        # initialize counter to help determine player's turn
+        counter = 0
+        if (counter % 2 == 0):
+            # display label reading "Player 1's Turn"
+            r = Label(root, text="Player 1's Turn (Red)")
+            r.pack()
+            # wait for player to complete turn
+            ## something involving a button reading "Turn Completed" ##
+            # increment counter by 1
+            counter += 1
+        else:
+            # display label reading "Player 2's Turn"
+            b = Label(root, text="Player 2's Turn (Blue)")
+            b.pack()
+            # wait for player to complete turn
+            ## something involving a button reading "Turn Completed" ##
+            # increment counter by 1
+            counter += 1
+    '''
 
 def main():
     root = tk.Tk()
