@@ -1,6 +1,6 @@
 from Tkinter import *
 import Tkinter as tk
-import tkinter.messagebox
+import tkMessageBox
 
 class Board(tk.Frame):
 
@@ -10,6 +10,7 @@ class Board(tk.Frame):
         self.last_itm = last_itm
         self.was_moved = was_moved
         self.illegal = illegal
+        self.king = False
         
         self.initUI()
 
@@ -102,6 +103,77 @@ class Board(tk.Frame):
         # keep track of the coordinates of the checker pieces
         self._drag_data = {"x": 0, "y": 0, "item": None}
 
+        def RectDims(coords):
+            dims = []
+            x1 = 0
+            x2 = 0
+            y1 = 0
+            y2 = 0
+            i = 1
+
+            #configure dimensions
+            while i < 9:
+                #X-coordinates
+                if coords[0] == i:
+                    if i == 1:
+                        x1 = 30
+                        x2 = 122
+                    elif i == 2:
+                        x1 = 122
+                        x2 = 214
+                    elif i == 3:
+                        x1 = 214
+                        x2 = 306
+                    elif i == 4:
+                        x1 = 306
+                        x2 = 398
+                    elif i == 5:
+                        x1 = 398
+                        x2 = 490
+                    elif i == 6:
+                        x1 = 490
+                        x2 = 582
+                    elif i == 7:
+                        x1 = 582
+                        x2 = 674
+                    elif i == 8:
+                        x1 = 674
+                        x2 = 766
+
+                #Y-coordinates
+                if coords[1] == i:
+                    if i == 1:
+                        y1 = 10
+                        y2 = 62
+                    elif i == 2:
+                        y1 = 62
+                        y2 = 114
+                    elif i == 3:
+                        y1 = 114
+                        y2 = 166
+                    elif i == 4:
+                        y1 = 166
+                        y2 = 218
+                    elif i == 5:
+                        y1 = 218
+                        y2 = 270
+                    elif i == 6:
+                        y1 = 270
+                        y2 = 322
+                    elif i == 7:
+                        y1 = 322
+                        y2 = 374
+                    elif i == 8:
+                        y1 = 374
+                        y2 = 424
+                i += 1
+
+        dims.append(x1)
+        dims.append(y1)
+        dims.append(x2)
+        dims.append(y2)
+
+        return dims
 
         # create the checker pieces
         ##### RED CHECKER PIECES #####
@@ -145,7 +217,7 @@ class Board(tk.Frame):
         b11 = self.createToken(536, 399, "blue")
         b12 = self.createToken(720, 399, "blue")
 
-        # add bindings for clicking, dragging and releasing HEAD
+        # add bindings for clicking, dragging and releasing the pieces
         self.canvas.tag_bind("token", "<ButtonPress-1>", self.startDrag)
         self.canvas.tag_bind("token", "<ButtonRelease-1>", self.stopDrag)
         self.canvas.tag_bind("token", "<B1-Motion>", self.drag)
@@ -155,17 +227,21 @@ class Board(tk.Frame):
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self)
 
+    
+
     def playerTurn(event):
         if self.was_moved == True:
             self.was_moved = False
             
         OnTokenButtonRelease(event)
-        curr_itm = canvas.find_nearest(event,x, event.y)[0]
+        curr_itm = canvas.find_closest(event.x, event.y)[0]
+        itm_below = canvas.find_overlapping(event.x, event.y, event.x, event.y)[0]
+        itm_tuple = canvas.find_overlapping(event.x, event.y, event.x, event.y)
 
         same_color = False
         if ((self.last_itm > 64 and self.last_itm < 77) and (curr_itm > 64 and curr_itm < 77)) and self.illegal != True:
             same_color = True
-            tkinter.messagebox.showinfo(title = None, message = "Player 1's Turn (Red)")
+            tkMessageBox.showinfo(title = None, message = "Player 1's Turn (Red)")
             if self.was_moved != True:
                 delta_x = init_data["x"] - event.x
                 delta_y = init_data["y"] - event.y
@@ -175,7 +251,7 @@ class Board(tk.Frame):
 
         elif ((self.last_itm > 76 and self.last_itm < 90) and (curr_itm > 76 and curr_itm < 90)) and self.illegal != True:
             same_color = True
-            tkinter.messagebox.showinfo(title = None, message = "Player 2's Turn (Blue)")
+            tkMessageBox.showinfo(title = None, message = "Player 2's Turn (Blue)")
             if self.was_moved != True:
                 delta_x = init_data["x"] - event.x
                 delta_y = init_data["y"] - event.y
