@@ -10,7 +10,7 @@ import tkMessageBox
 
 class Board(tk.Frame):
 
-    def __init__(self, parent, last_itm, was_moved, illegal, red_king, blue_king):
+    def __init__(self, parent, last_itm, was_moved, illegal, red_king, blue_king, moved):
         tk.Frame.__init__(self, parent)
         
         self.last_itm = last_itm
@@ -18,6 +18,7 @@ class Board(tk.Frame):
         self.illegal = illegal
         self.red_king = red_king
         self.blue_king = blue_king
+        self.moved = moved
         
         self.initUI()
 
@@ -374,8 +375,19 @@ class Board(tk.Frame):
         dRow = abs(lastCoord[1] - self.
         
         for item in blackTags:
-            if ((item == itemB) and (len(iTuple) == 2)
-        
+            if ((item == itemB) and (len(iTuple) == 2) and dRow > 0 and dCol > 0:
+                s_dims = RectDims(final_coord)
+                self.moves += 1
+                print "Moves: ", self.moved
+                if lastCoord[0] == 1 and current < 76 and same_color != True:
+                    canvas.itemconfig(current, fill = "orange", outline "orange")
+                    self.red_king.append(current)
+                    print "self.red_king: ", self.red_king
+                elif lastCoord[0] == 8 and current < 77 and same_color != True:
+                    canvas.itemconfig(current, fill = "gray", outline "gray")
+                    self.blue_king.append(current)
+                    print "self.blue_king: ", self.blue_king
+                        
 
 def main():
     root = tk.Tk()
