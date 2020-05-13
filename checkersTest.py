@@ -362,9 +362,24 @@ class Board(tk.Frame):
             counter += 1
     '''
 
+    def PieceLogic(event):
+        blackTags = canvas.find_withtag("black")
+        current = canvas.find_closest(event.x,event.y)[0]
+        iBelow = canvas.find_overlapping(event.x,event.y,event.x,event.y)[0]
+        iTuple = canvas.find_overlapping(event.x,event.y,event.x,event.y)
+
+
+        lastCoord = Coords(iBelow)
+
+        dRow = abs(lastCoord[1] - self.
+        
+        for item in blackTags:
+            if ((item == itemB) and (len(iTuple) == 2)
+        
+
 def main():
     root = tk.Tk()
-    x = Board(root, [], 0, 0)
+    x = Board(root, [], 0, 0, False, [], [])
     root.geometry("800x450+200+200")
     root.mainloop()
     
