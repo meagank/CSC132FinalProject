@@ -4,13 +4,14 @@ import tkMessageBox
 
 class Board(tk.Frame):
 
-    def __init__(self, parent, last_itm, was_moved, illegal):
+    def __init__(self, parent, last_itm, was_moved, illegal, red_king, blue_king):
         tk.Frame.__init__(self, parent)
         
         self.last_itm = last_itm
         self.was_moved = was_moved
         self.illegal = illegal
-        self.king = False
+        self.red_king = red_king
+        self.blue_king = blue_king
         
         self.initUI()
 
