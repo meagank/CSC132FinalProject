@@ -5,13 +5,12 @@
 ######################################################################
 
 from Tkinter import *
-import Tkinter as tk
 import tkMessageBox
 
-class Board(tk.Frame):
+class Board(Frame):
 
     def __init__(self, parent, kcoord,last_itm, was_moved, illegal, red_king, blue_king, moved):
-        tk.Frame.__init__(self, parent)
+        Frame.__init__(self, parent)
         
         self.last_itm = last_itm
         self.was_moved = was_moved
@@ -392,7 +391,7 @@ class Board(tk.Frame):
                         
 
 def main():
-    root = tk.Tk()
+    root = Tk()
     x = Board(root, [], 0, 0, False, [], [])
     root.geometry("800x450+200+200")
     root.mainloop()
