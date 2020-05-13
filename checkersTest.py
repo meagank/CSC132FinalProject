@@ -381,18 +381,17 @@ class Board(Frame):
                 self.moved += 1
                 print "Moves: ", self.moved
                 if lastCoord[0] == 1 and current < 76 and same_color != True:
-                    canvas.itemconfig(current, fill = "orange", outline "orange")
+                    canvas.itemconfig(current, fill = "orange", outline = "orange")
                     self.red_king.append(current)
-                    print "self.red_king: ", self.red_king
                 elif lastCoord[0] == 8 and current < 77 and same_color != True:
-                    canvas.itemconfig(current, fill = "gray", outline "gray")
+                    canvas.itemconfig(current, fill = "gray", outline = "gray")
                     self.blue_king.append(current)
-                    print "self.blue_king: ", self.blue_king
+                    
                         
 
 def main():
     root = Tk()
-    x = Board(root, [], 0, 0, False, [], [])
+    x = Board(root, [], 0, 0, False, [], [], False)
     root.geometry("800x450+200+200")
     root.mainloop()
     
