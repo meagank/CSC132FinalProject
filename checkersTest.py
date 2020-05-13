@@ -9,12 +9,11 @@ import tkMessageBox
 
 class Board(Frame):
 
-    def __init__(self, parent, kcoord,last_itm, was_moved, illegal, red_king, blue_king, moved):
+    def __init__(self, parent, kcoord,last_itm, was_moved, red_king, blue_king, moved):
         Frame.__init__(self, parent)
         
         self.last_itm = last_itm
         self.was_moved = was_moved
-        self.illegal = illegal
         self.red_king = red_king
         self.blue_king = blue_king
         self.moved = moved
