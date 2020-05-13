@@ -1,3 +1,9 @@
+######################################################################
+# Name: Jakira Williams
+# Date: March 13, 2020
+# Description: Checkers python game using Tkinter
+######################################################################
+
 from Tkinter import *
 import Tkinter as tk
 import tkMessageBox
