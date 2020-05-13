@@ -10,7 +10,7 @@ import tkMessageBox
 
 class Board(tk.Frame):
 
-    def __init__(self, parent, last_itm, was_moved, illegal, red_king, blue_king, moved):
+    def __init__(self, parent, kcoord,last_itm, was_moved, illegal, red_king, blue_king, moved):
         tk.Frame.__init__(self, parent)
         
         self.last_itm = last_itm
@@ -19,6 +19,7 @@ class Board(tk.Frame):
         self.red_king = red_king
         self.blue_king = blue_king
         self.moved = moved
+        self.kcoord = kcoord
         
         self.initUI()
 
@@ -368,16 +369,17 @@ class Board(tk.Frame):
         current = canvas.find_closest(event.x,event.y)[0]
         iBelow = canvas.find_overlapping(event.x,event.y,event.x,event.y)[0]
         iTuple = canvas.find_overlapping(event.x,event.y,event.x,event.y)
-
+        self.kcoord = Coords(iBelow)
 
         lastCoord = Coords(iBelow)
 
-        dRow = abs(lastCoord[1] - self.
+        dRow = abs(lastCoord[1] - self.kcoord[1])
+        dCol = abs(lastCoord[0] - self.kcoord[0])
         
         for item in blackTags:
-            if ((item == itemB) and (len(iTuple) == 2) and dRow > 0 and dCol > 0:
-                s_dims = RectDims(final_coord)
-                self.moves += 1
+            if ((item == itemB) and (len(iTuple) == 2) and dRow > 0 and dCol > 0):
+                s_dims = RectDims(lastCoord)
+                self.moved += 1
                 print "Moves: ", self.moved
                 if lastCoord[0] == 1 and current < 76 and same_color != True:
                     canvas.itemconfig(current, fill = "orange", outline "orange")
