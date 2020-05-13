@@ -166,8 +166,8 @@ class Board(Frame):
 
             #configure dimensions
             while i < 9:
-                #X-coordinates
-                if coordinate[0] == i:
+                #y-coordinates
+                if coordinate[1] == i:
                     if i == 1:
                         x1 = 30
                         x2 = 122
@@ -193,8 +193,8 @@ class Board(Frame):
                         x1 = 674
                         x2 = 766
 
-                #Y-coordinates
-                if coordinate[1] == i:
+                #x-coordinates
+                if coordinate[0] == i:
                     if i == 1:
                         y1 = 10
                         y2 = 62
