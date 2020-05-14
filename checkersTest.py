@@ -9,17 +9,30 @@ import tkMessageBox
 
 class Board(Frame):
 
-    def __init__(self, parent, kcoord,last_itm, was_moved, red_king, blue_king, moved):
+    def __init__(self, parent, kcoord, last_itm, was_moved, illegal, red_king, blue_king, moved):
         Frame.__init__(self, parent)
         
         self.last_itm = last_itm
         self.was_moved = was_moved
+        self.illegal = illegal
         self.red_king = red_king
         self.blue_king = blue_king
         self.moved = moved
         self.kcoord = kcoord
         
         self.initUI()
+
+
+    def initUI(self):
+        self.master.title("Checkers")
+        self.pack(fill=BOTH, expand=1)
+        self.canvas = Canvas(self)
+
+
+        drag_data = {"x": 0, "y": 0, "item": None}
+        init_data = {"x": 0, "y": 0, "item": None}
+        final_coord = [0,0]
+
 
         # create the checkerboard
         #### ROW 1 ####
@@ -274,11 +287,7 @@ class Board(Frame):
         self.canvas.tag_bind("token", "<ButtonRelease-1>", self.stopDrag)
         self.canvas.tag_bind("token", "<B1-Motion>", self.drag)
 
-    def initUI(self):
-        self.master.title("Checkers")
-        self.pack(fill=BOTH, expand=1)
-        self.canvas = Canvas(self)
-
+    
 
     '''
 
