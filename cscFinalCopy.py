@@ -7,16 +7,18 @@ class Background(Frame):
     def __init__(self,parent):
         Frame.__init__(self, parent)
         self.initUI()
+
         self._drag_data = {"x": 0, "y": 0, "item": None}
+        
     def initUI(self):
         self.master.title("Checkers")
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self)
+        
 
 
         drag_data = {"x": 0, "y": 0, "item": None}
-        init_data = {"x": 0, "y": 0, "item": None}
-        final_coord = [0,0]    
+        init_data = {"x": 0, "y": 0, "item": None}   
 
         # create the checkerboard
         #### ROW 1 ####
@@ -106,10 +108,7 @@ class Background(Frame):
         ##self.draw(1,1)
 
         self.canvas.pack(fill=BOTH, expand=1)
-        ##self.draw(1,1)
-
-
-    
+ 
 
 
     def draw(self, top, left, color):
@@ -121,11 +120,9 @@ class Background(Frame):
             self.createToken(my, mx, "red")
         elif (color == 0):
             self.createToken(my, mx, "blue")
-        ##createToken(my, mx, "red")
-        ##self.canvas.create_oval(100, 100, 150, 150, outline="red", fill="red")
+
 
     def createToken(self, x, y, color):
-        ##print x
         # create a checker piece at given coord
         aOval = self.canvas.create_oval(x - 25, y - 25,x + 25 , y + 25, outline= color , fill=color)
 ##        return aOval
@@ -148,12 +145,42 @@ class Background(Frame):
         self._drag_data["y"] = 0
 
     def drag(self, event):
+        dimensionVert = [36, 88, 140, 192, 244, 296, 348, 400]
+        dimensionHor = [76, 168, 260, 352, 444, 536, 628, 720]
         # handle dragging of an object 
         # determine move distance
         delta_x = event.x - self._drag_data["x"]
         delta_y = event.y - self._drag_data["y"]
         # move the object 
         self.canvas.move(self._drag_data["item"], delta_x, delta_y)
+        offsetx = 999
+        offsety = 999
+        finalVert = 1
+        finalHor = 1
+        finalSquare = 1
+        x = 0
+        for vert in range(len(dimensionVert)):
+            VCoord = dimensionVert[vert]
+            if (abs(VCoord - event.y) < offsetx):
+                print " VCoord ===== {}, event.y ====== {}, offsety ===== {}, vert ==== {}".format(VCoord, event.x, offsetx, vert)
+                finalVert =  vert
+                offsetx = abs(VCoord - event.y)
+        for horiz in range(len(dimensionHor)):
+            HCoord = dimensionHor[horiz]
+            if (abs(HCoord - event.x) < offsety):
+                print " HCoord ===== {}, event.x ====== {}, offsetx ===== {}, horiz===== {}".format(HCoord, event.y, offsety, horiz)
+                finalHor = horiz
+                offsety = abs(HCoord - event.x)
+                print "offsety ==== {}".format(offsety)
+
+        #event.x = dimensionVert[finalVert]
+        #event.y = dimensionHor[finalHor]
+        finalSquare = (finalVert * 8) + finalHor + 1
+
+        print "finalSquare === {}, finalVert === {}, finalHor === {}".format(finalSquare, finalVert, finalHor)
+
+
+        
         # record the new position
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
@@ -288,26 +315,26 @@ class Pieces:
         return self.square
 
     def setLocation(self, x, lastCounter):
-        print "SETLOCATION:  x, lastcounter " + str(x)+", "+str(lastCounter)
+        # print "SETLOCATION:  x, lastcounter " + str(x)+", "+str(lastCounter)
         if (x < 12):
             NotSet = True
             counter = lastCounter
             while (counter < 25 and NotSet == True):
                 if counter < 9:
                     if (counter % 2 == 1):
-                        print "Counter === " + str(counter)
+                        # print "Counter === " + str(counter)
                         return counter
                     else:
                         counter += 1
                 elif (counter < 17):
                     if (counter % 2 == 0):
-                        print "Counter === " + str(counter)
+                        # print "Counter === " + str(counter)
                         return counter
                     else:
                         counter += 1
                 elif (counter < 25):
                     if (counter % 2 == 1):
-                        print "Counter === " + str(counter)
+                        # print "Counter === " + str(counter)
                         return counter
                     else:
                         counter += 1
@@ -349,13 +376,12 @@ def main():
     s = Square()
     p = Pieces()
     b = Background(root)
-##    root.mainloop()
+
 
         
     counter = 1
     squares = []
     i = 0
-
     while counter < 65:
         tmp = Square()
         squares.append(tmp)
@@ -382,13 +408,11 @@ def main():
         pieces.append(tmp2)
         pieces[i].color = tmp2.setColor(x)
         startSquare = tmp2.setLocation(i, lastCounter)
-        print "LASTCOUNTER, startSquare ===== " + str(lastCounter) +", " + str(startSquare)
+        # print "LASTCOUNTER, startSquare ===== " + str(lastCounter) +", " + str(startSquare)
         pieces[i].square = startSquare
         lastCounter = startSquare + 1
         x += 1
         i += 1
-
-        
 
 
 ##    x = 1
@@ -401,7 +425,6 @@ def main():
 
         
 
-
     for counter in range(len(pieces)):
         location = pieces[counter].getLocation()
         left = squares[location - 1].getleft()
@@ -409,7 +432,7 @@ def main():
         top = squares[location - 1].gettop()
         bottom = squares[location - 1].getbottom()
         color = pieces[counter].getColor()
-        print (" location = {}, top = {}, bottom = {}, left = {}, right = {}").format(location, top, bottom, left, right)
+        # print (" location = {}, top = {}, bottom = {}, left = {}, right = {}").format(location, top, bottom, left, right)
         ##b.createToken(top, left, "red")
         b.draw(top,left, color)
 
