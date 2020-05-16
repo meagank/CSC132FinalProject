@@ -1,5 +1,5 @@
 from Tkinter import *
-
+import numpy as np
 
 
 class Background(Frame):
@@ -102,71 +102,97 @@ class Background(Frame):
         self.canvas.create_rectangle(582, 374, 674, 424, outline="white", fill="white")
         self.canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black", tags = "black")
 
-        self.canvas.pack(fill=BOTH, expand=1)  
+        ##self.canvas.create_oval(100, 100, 150, 150, outline="red", fill="red")
+        ##self.createToken(1, 1, "red")
+        ##self.draw(1,1)
+
+        self.canvas.pack(fill=BOTH, expand=1)
+        ##self.draw(1,1)
+
+
+    
+
+
+    def draw(self, top, left):
+
+        mx = top + 26
+        my = left + 46
+        self.createToken(my, mx, "red")
+        ##createToken(my, mx, "red")
+        ##self.canvas.create_oval(100, 100, 150, 150, outline="red", fill="red")
+
+    def createToken(self, x, y, color):
+        ##print x
+        # create a checker piece at given coord
+        aOval = self.canvas.create_oval(x - 25, y - 25,x + 25 , y + 25, outline="red", fill="red")
+##        return aOval
+##        self.canvas.create_oval(1, 1, x + 25, y + 25, outline=color, fill=color,tags=("token",),)
 
 
 class Square:
 
     def __init__(self):
-        top = 1
-        bottom = 10
-        left = 1
-        right = 10
+        self.top = 1
+        self.bottom = 10
+        self.left = 1
+        self.right = 10
         content = 99
+
 
     def setUpSquare(self, counter):
 
-
+        # based off of place in list, determines top and bottom x - coord
         if (counter < 9):
-            top = 10
-            bottom = 62
+            self.top = 10
+            self.bottom = 62
         elif (counter < 17):
-            top = 62
-            bottom = 114
+            self.top = 62
+            self.bottom = 114
         elif (counter < 25):
-            top = 114
-            bottom = 166
+            self.top = 114
+            self.bottom = 166
         elif (counter < 33):
-            top = 166
-            bottom = 218
+            self.top = 166
+            self.bottom = 218
         elif (counter < 41):
-            top = 218
-            bottom = 270
+            self.top = 218
+            self.bottom = 270
         elif (counter < 49):
-            top = 270
-            bottom = 322
+            self.top = 270
+            self.bottom = 322
         elif (counter < 57):
-            top = 322
-            bottom = 374
+            self.top = 322
+            self.bottom = 374
         else:
-            top = 374
-            bottom = 424
+            self.top = 374
+            self.bottom = 424
 
-
+        
+        # based off of place in list, determines left and right y - coord
         if (counter % 8 == 1):
-            left = 30
-            right = 122
+            self.left = 30
+            self.right = 122
         elif (counter % 8 == 2):
-            left = 122
-            right = 214
+            self.left = 122
+            self.right = 214
         elif (counter % 8 == 3):
-            left = 214
-            right = 306
+            self.left = 214
+            self.right = 306
         elif (counter % 8 == 4):
-            left = 306
-            right = 398
+            self.left = 306
+            self.right = 398
         elif (counter % 8 == 5):
-            left = 398
-            right = 490
+            self.left = 398
+            self.right = 490
         elif (counter % 8 == 6):
-            left = 490
-            right = 582
+            self.left = 490
+            self.right = 582
         elif (counter % 8 == 7):
-            left = 582
-            right = 674
+            self.left = 582
+            self.right = 674
         else:
-            left = 674
-            right = 766
+            self.left = 674
+            self.right = 766
 
 
         if (counter < 9):
@@ -188,17 +214,24 @@ class Square:
             if counter % 2 == 1:
                 content = counter / 2
 
+       ## print "SETUPSQ: counter, top, bottom, left, right, content:  " + str(counter) +", " + str(top) + ", " + str(bottom)+", " + str(left)+", "+str(right)+", "+str(content)
+        
+
     def getleft(self):
-        return left
+      #  print "getleft === " + str(self.left)
+        return self.left
 
     def getright(self):
-        return right
+      #  print "getright === " + str(self.right)
+        return self.right
 
     def gettop(self):
-        return top
+      #  print "gettop === " + str(self.top)
+        return self.top
 
     def getbottom(self):
-        return bottom
+      #  print "getbottom === " + str(self.bottom)
+        return self.bottom
        
 
 class Pieces:
@@ -208,7 +241,8 @@ class Pieces:
         color = 1
         king = False
         life = True
-        square = 1
+        self.square = 1
+        self.token = 1
 
     def color(self, x):
         if (x < 13):
@@ -217,7 +251,64 @@ class Pieces:
             color = 0
 
 
-        
+    def getLocation(self):
+         # print "getLocation === " + str(self.square)
+        return self.square
+
+    def setLocation(self, x, lastCounter):
+        print "SETLOCATION:  x, lastcounter " + str(x)+", "+str(lastCounter)
+        if (x < 12):
+            NotSet = True
+            counter = lastCounter
+            while (counter < 25 and NotSet == True):
+                if counter < 9:
+                    if (counter % 2 == 1):
+                        print "Counter === " + str(counter)
+                        return counter
+                    else:
+                        counter += 1
+                elif (counter < 17):
+                    if (counter % 2 == 0):
+                        print "Counter === " + str(counter)
+                        return counter
+                    else:
+                        counter += 1
+                elif (counter < 25):
+                    if (counter % 2 == 1):
+                        print "Counter === " + str(counter)
+                        return counter
+                    else:
+                        counter += 1
+                else:
+                    print "Error"
+        elif (x < 24):
+            if lastCounter < 41:
+                counter = 41
+            else:
+                counter = lastCounter
+            while (counter < 65):
+                if counter < 49:
+                    if counter % 2 == 0:
+                       # print "Counter === " + str(counter)
+                        return counter
+                    else:
+                        counter += 1
+                elif (counter < 57):
+                    if counter % 2 == 1:
+                       # print "Counter === " + str(counter)
+                        return counter
+                    else:
+                        counter += 1
+                elif (counter < 65):
+                    if counter % 2 == 0:
+                        return counter
+                    else:
+                        counter += 1
+                else:
+                    print "Error"
+
+
+            
     
 ############### MAIN ###############
 def main():
@@ -226,51 +317,75 @@ def main():
     s = Square()
     p = Pieces()
     b = Background(root)
-    root.mainloop()
+##    root.mainloop()
 
         
     counter = 1
     squares = []
+    i = 0
 
     while counter < 65:
         tmp = Square()
         squares.append(tmp)
-        counter += 1
-
-    counter = 1
-    i = 0
-    while counter < 65:
-        s.setUpSquare(counter)
-        squares[i]
-
+        squares[i].setUpSquare(counter)
+       # print "in whule counter=== " + str(counter) + ", i=== " + str(i)
         counter += 1
         i += 1
 
+##    counter = 1
+##    i = 0
+##    while counter < 65:
+##        s.setUpSquare(counter)
+##        squares[i].setUpSquare(counter)
+##
+##        counter += 1
+##        i += 1
+
     x = 1
     pieces = []
+    i = 0
+    lastCounter = 1
     while x < 25:
         tmp2 = Pieces()
         pieces.append(tmp2)
+        pieces[i].color(x)
+        startSquare = tmp2.setLocation(i, lastCounter)
+        print "LASTCOUNTER, startSquare ===== " + str(lastCounter) +", " + str(startSquare)
+        pieces[i].square = startSquare
+        lastCounter = startSquare + 1
         x += 1
+        i += 1
 
-    x = 1
-    while x < 25:
-        p.color(x)
-        x += 1
+        
 
-########### Create board and pieces ###########
+
+##    x = 1
+##    i = 0
+##    while x < 25:
+##        p.color(x)
+##        pieces[i].color(x)
+##        x += 1
+##        i += 1
+
+        
+
+
     for counter in range(len(pieces)):
-        location = pieces[counter].square
-        left = squares[location].left
-        right = squares[location].right
-        top = squares[location].top
-        bottom = squares[location].bottom
+        location = pieces[counter].getLocation()
+        left = squares[location - 1].getleft()
+        right = squares[location - 1].getright()
+        top = squares[location - 1].gettop()
+        bottom = squares[location - 1].getbottom()
         color = pieces[counter].color
+        print (" location = {}, top = {}, bottom = {}, left = {}, right = {}").format(location, top, bottom, left, right)
+        ##b.createToken(top, left, "red")
+        b.draw(top,left)
+
+
+    root.mainloop()  
 
 
 
 if __name__ == "__main__":
     main()
         
-
-
