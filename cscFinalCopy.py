@@ -1,5 +1,4 @@
 from Tkinter import *
-import numpy as np
 
 
 class Background(Frame):
@@ -8,7 +7,7 @@ class Background(Frame):
     def __init__(self,parent):
         Frame.__init__(self, parent)
         self.initUI()
-
+        self._drag_data = {"x": 0, "y": 0, "item": None}
     def initUI(self):
         self.master.title("Checkers")
         self.pack(fill=BOTH, expand=1)
@@ -127,7 +126,33 @@ class Background(Frame):
         aOval = self.canvas.create_oval(x - 25, y - 25,x + 25 , y + 25, outline="red", fill="red")
 ##        return aOval
 ##        self.canvas.create_oval(1, 1, x + 25, y + 25, outline=color, fill=color,tags=("token",),)
+    # add bindings for clicking, dragging and releasing the pieces
+        self.canvas.tag_bind(aOval, "<ButtonPress-1>", self.startDrag)
+        self.canvas.tag_bind(aOval, "<ButtonRelease-1>", self.stopDrag)
+        self.canvas.tag_bind(aOval, "<B1-Motion>", self.drag)
+        
+    def startDrag(self, event):
+        # begin drag of a checker piece and record location
+        self._drag_data["item"] = self.canvas.find_closest(event.x, event.y)[0]
+        self._drag_data["x"] = event.x
+        self._drag_data["y"] = event.y
 
+    def stopDrag(self, event):
+        # end drag of an object and information
+        self._drag_data["item"] = None
+        self._drag_data["x"] = 0
+        self._drag_data["y"] = 0
+
+    def drag(self, event):
+        # handle dragging of an object 
+        # determine move distance
+        delta_x = event.x - self._drag_data["x"]
+        delta_y = event.y - self._drag_data["y"]
+        # move the object 
+        self.canvas.move(self._drag_data["item"], delta_x, delta_y)
+        # record the new position
+        self._drag_data["x"] = event.x
+        self._drag_data["y"] = event.y
 
 class Square:
 
