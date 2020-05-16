@@ -112,18 +112,22 @@ class Background(Frame):
     
 
 
-    def draw(self, top, left):
+    def draw(self, top, left, color):
 
         mx = top + 26
         my = left + 46
-        self.createToken(my, mx, "red")
+
+        if (color == 1):
+            self.createToken(my, mx, "red")
+        elif (color == 0):
+            self.createToken(my, mx, "blue")
         ##createToken(my, mx, "red")
         ##self.canvas.create_oval(100, 100, 150, 150, outline="red", fill="red")
 
     def createToken(self, x, y, color):
         ##print x
         # create a checker piece at given coord
-        aOval = self.canvas.create_oval(x - 25, y - 25,x + 25 , y + 25, outline="red", fill="red")
+        aOval = self.canvas.create_oval(x - 25, y - 25,x + 25 , y + 25, outline= color , fill=color)
 ##        return aOval
 ##        self.canvas.create_oval(1, 1, x + 25, y + 25, outline=color, fill=color,tags=("token",),)
     # add bindings for clicking, dragging and releasing the pieces
@@ -263,17 +267,20 @@ class Pieces:
 
     def __init__(self):
         # 1 = red, 0 = blue
-        color = 1
+        self.color = 1
         king = False
         life = True
         self.square = 1
         self.token = 1
 
-    def color(self, x):
+    def setColor(self, x):
         if (x < 13):
-            color = 1
+            return 1
         elif (x < 25):
-            color = 0
+            return 0
+
+    def getColor(self):
+        return self.color
 
 
     def getLocation(self):
@@ -373,7 +380,7 @@ def main():
     while x < 25:
         tmp2 = Pieces()
         pieces.append(tmp2)
-        pieces[i].color(x)
+        pieces[i].color = tmp2.setColor(x)
         startSquare = tmp2.setLocation(i, lastCounter)
         print "LASTCOUNTER, startSquare ===== " + str(lastCounter) +", " + str(startSquare)
         pieces[i].square = startSquare
@@ -401,10 +408,10 @@ def main():
         right = squares[location - 1].getright()
         top = squares[location - 1].gettop()
         bottom = squares[location - 1].getbottom()
-        color = pieces[counter].color
+        color = pieces[counter].getColor()
         print (" location = {}, top = {}, bottom = {}, left = {}, right = {}").format(location, top, bottom, left, right)
         ##b.createToken(top, left, "red")
-        b.draw(top,left)
+        b.draw(top,left, color)
 
 
     root.mainloop()  
