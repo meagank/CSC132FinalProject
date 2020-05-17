@@ -103,7 +103,12 @@ class Background(Frame):
         self.canvas.create_rectangle(582, 374, 674, 424, outline="white", fill="white")
         self.canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black", tags = "black")
 
+        ##self.canvas.create_oval(100, 100, 150, 150, outline="red", fill="red")
+        ##self.createToken(1, 1, "red")
+        ##self.draw(1,1)
+
         self.canvas.pack(fill=BOTH, expand=1)
+ 
 
 
     def draw(self, top, left, color):
@@ -120,7 +125,9 @@ class Background(Frame):
     def createToken(self, x, y, color):
         # create a checker piece at given coord
         aOval = self.canvas.create_oval(x - 25, y - 25,x + 25 , y + 25, outline= color , fill=color)
-        # add bindings for clicking, dragging and releasing the pieces
+##        return aOval
+##        self.canvas.create_oval(1, 1, x + 25, y + 25, outline=color, fill=color,tags=("token",),)
+    # add bindings for clicking, dragging and releasing the pieces
         self.canvas.tag_bind(aOval, "<ButtonPress-1>", self.startDrag)
         self.canvas.tag_bind(aOval, "<ButtonRelease-1>", self.stopDrag)
         self.canvas.tag_bind(aOval, "<B1-Motion>", self.drag)
@@ -136,6 +143,27 @@ class Background(Frame):
         self._drag_data["item"] = None
         self._drag_data["x"] = 0
         self._drag_data["y"] = 0
+
+        
+
+##        if (finalSquare < finalSquare + 10 and finalSquare > finalSquare + 8):
+##            initialSquare = finalSquare - 9
+##
+##        elif (finalSquare < finalSquare + 8 and finalSquare > finalSquare + 6):
+##            initialSquare = finalSquare - 7
+##
+##        elif (finalSquare > finalSquare - 10 and finalSquare < finalSquare - 8):
+##            initialSquare = finalSquare + 9
+##
+##        elif (finalSquare > finalSquare - 8 and finalSquare < finalSquare - 6):
+##            initialSquare = finalSquare + 7
+##
+##        print "2"
+##
+##
+##        print "initialSquare === {}".format(initialSquare)
+
+        
 
     def drag(self, event):
         dimensionVert = [36, 88, 140, 192, 244, 296, 348, 400]
@@ -155,28 +183,36 @@ class Background(Frame):
         for vert in range(len(dimensionVert)):
             VCoord = dimensionVert[vert]
             if (abs(VCoord - event.y) < offsetx):
-                # print " VCoord ===== {}, event.y ====== {}, offsety ===== {}, vert ==== {}".format(VCoord, event.x, offsetx, vert)
+                #print " VCoord ===== {}, event.y ====== {}, offsety ===== {}, vert ==== {}".format(VCoord, event.x, offsetx, vert)
+##                global finalVert
                 finalVert =  vert
                 offsetx = abs(VCoord - event.y)
         for horiz in range(len(dimensionHor)):
             HCoord = dimensionHor[horiz]
             if (abs(HCoord - event.x) < offsety):
-                # print " HCoord ===== {}, event.x ====== {}, offsetx ===== {}, horiz===== {}".format(HCoord, event.y, offsety, horiz)
+                #print " HCoord ===== {}, event.x ====== {}, offsetx ===== {}, horiz===== {}".format(HCoord, event.y, offsety, horiz)
+##                global finalHor
                 finalHor = horiz
                 offsety = abs(HCoord - event.x)
-                # print "offsety ==== {}".format(offsety)
+                #print "offsety ==== {}".format(offsety)
 
         #event.x = dimensionVert[finalVert]
         #event.y = dimensionHor[finalHor]
+        global finalSquare
         finalSquare = (finalVert * 8) + finalHor + 1
 
-        # print "finalSquare === {}, finalVert === {}, finalHor === {}".format(finalSquare, finalVert, finalHor)
-
-
-        
         # record the new position
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
+        print counter
+        print "finalSquare === {}, finalVert === {}, finalHor === {}".format(finalSquare, finalVert, finalHor)
+
+
+##        def jump():         
+##            if (initialSquare + 18 == finalSquare or initialSquare + 14 == finalSquare or\
+##                initialSquare - 18 == finalSquare or initialSquare - 14 == finalSquare):
+##                print "hello"
+
 
 class Square:
 
@@ -358,8 +394,6 @@ class Pieces:
                         counter += 1
                 else:
                     print "Error"
-
-
             
     
 ############### MAIN ###############
@@ -371,7 +405,7 @@ def main():
     b = Background(root)
 
 
-        
+    global counter
     counter = 1
     squares = []
     i = 0
