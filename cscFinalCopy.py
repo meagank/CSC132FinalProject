@@ -394,7 +394,19 @@ class Pieces:
                         counter += 1
                 else:
                     print "Error"
+
+        #King Feature
+        if (finalHor == 0 and color == 0):
+            blue_king = True
+            return "blue king"
+        else:
+            blue_king = False
             
+        if (finalHor == 7 and color == 1):
+            red_king = True
+            return "red king"
+        else:
+            red_king = False    
     
 ############### MAIN ###############
 def main():
