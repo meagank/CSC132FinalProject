@@ -121,7 +121,7 @@ class Background(Frame):
             red_king = True
             return "red king"
         else:
-            red_king = False    
+            red_king = False  
 
     def draw(self, top, left, color):
 
@@ -150,37 +150,80 @@ class Background(Frame):
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
 
+##        piece_jumped = canvas.find_overlapping(event.x, event.y, event.x, event.y)[0]
+##        self.canvas.delete(piece_jumped)
+
+        # get initial x- and y-coordinates of the moved checker piece
+        dimensionHor = [76, 168, 260, 352, 444, 536, 628, 720]
+
+        global initialHCoord
+        if (event.x > 0 and event.x < 106):
+            initialHCoord = dimensionHor[0]
+        elif (event.x > 138 and event.x < 198):
+            initialHCoord = dimensionHor[1]
+        elif (event.x > 230 and event.x < 290):
+            initialHCoord = dimensionHor[2]
+        elif (event.x > 322 and event.x < 382):
+            initialHCoord = dimensionHor[3]
+        elif (event.x > 414 and event.x < 474):
+            initialHCoord = dimensionHor[4]
+        elif (event.x > 506 and event.x < 566):
+            initialHCoord = dimensionHor[5]
+        elif (event.x > 598 and event.x < 658):
+            initialHCoord = dimensionHor[6]
+        elif (event.x > 690 and event.x < 750):
+            initialHCoord = dimensionHor[7]
+            
+        print "INITIALX === {}".format(initialHCoord)
+
+        dimensionVert = [36, 88, 140, 192, 244, 296, 348, 400]
+
+        global initialVCoord
+        if (event.y > 0 and event.y < 66):
+            initialVCoord = dimensionVert[0]
+        elif (event.y > 58 and event.y < 118):
+            initialVCoord = dimensionVert[1]
+        elif (event.y > 110 and event.y < 170):
+            initialVCoord = dimensionVert[2]
+        elif (event.y > 162 and event.y < 222):
+            initialVCoord = dimensionVert[3]
+        elif (event.y > 214 and event.y < 274):
+            initialVCoord = dimensionVert[4]
+        elif (event.y > 266 and event.y < 326):
+            initialVCoord = dimensionVert[5]
+        elif (event.y > 318 and event.y < 378):
+            initialVCoord = dimensionVert[6]
+        elif (event.y > 370 and event.y < 430):
+            initialVCoord = dimensionVert[7]
+            
+        print "INITIALY === {}".format(initialVCoord)
+
+
     def stopDrag(self, event):
         # end drag of an object and information
         self._drag_data["item"] = None
         self._drag_data["x"] = 0
         self._drag_data["y"] = 0
 
-        
 
-##        if (finalSquare < finalSquare + 10 and finalSquare > finalSquare + 8):
-##            initialSquare = finalSquare - 9
-##
-##        elif (finalSquare < finalSquare + 8 and finalSquare > finalSquare + 6):
-##            initialSquare = finalSquare - 7
-##
-##        elif (finalSquare > finalSquare - 10 and finalSquare < finalSquare - 8):
-##            initialSquare = finalSquare + 9
-##
-##        elif (finalSquare > finalSquare - 8 and finalSquare < finalSquare - 6):
-##            initialSquare = finalSquare + 7
-##
-##        print "2"
-##
-##
-##        print "initialSquare === {}".format(initialSquare)
+        # recognize that a jump has been made and then delete the jumped piece
+        if (initialHCoord + 184 == HCoord and initialVCoord + 104 == VCoord):
+            print "Jump of +2, +2 has been made."
+            
+        elif (initialHCoord - 184 == HCoord and initialVCoord + 104 == VCoord):
+            print "Jump of -2, +2 has been made."
+            
+        elif (initialHCoord + 184 == HCoord and initialVCoord - 104 == VCoord):
+            print "Jump of +2, -2 has been made."
+            
+        elif (initialHCoord - 184 == HCoord and initialVCoord - 104 == VCoord):
+            print "Jump of -2, -2 has been made."
 
         
 
     def drag(self, event):
         dimensionVert = [36, 88, 140, 192, 244, 296, 348, 400]
         dimensionHor = [76, 168, 260, 352, 444, 536, 628, 720]
-        
         # handle dragging of an object 
         # determine move distance
         delta_x = event.x - self._drag_data["x"]
@@ -199,16 +242,25 @@ class Background(Frame):
                 #print " VCoord ===== {}, event.y ====== {}, offsety ===== {}, vert ==== {}".format(VCoord, event.x, offsetx, vert)
                 global finalVert
                 finalVert =  vert
-                
                 offsetx = abs(VCoord - event.y)
+            else:
+                vert -= 1
+                global VCoord
+                VCoord = dimensionVert[vert]
+                break
+            
         for horiz in range(len(dimensionHor)):
+            global HCoord
             HCoord = dimensionHor[horiz]
             if (abs(HCoord - event.x) < offsety):
                 #print " HCoord ===== {}, event.x ====== {}, offsetx ===== {}, horiz===== {}".format(HCoord, event.y, offsety, horiz)
 ##                global finalHor
                 finalHor = horiz
                 offsety = abs(HCoord - event.x)
-                #print "offsety ==== {}".format(offsety)
+            else:
+                horiz -= 1
+                HCoord = dimensionHor[horiz]
+                break
 
         #event.x = dimensionVert[finalVert]
         #event.y = dimensionHor[finalHor]
@@ -218,14 +270,6 @@ class Background(Frame):
         # record the new position
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
-        print counter
-        print "finalSquare === {}, finalVert === {}, finalHor === {}".format(finalSquare, finalVert, finalHor)
-
-
-##        def jump():         
-##            if (initialSquare + 18 == finalSquare or initialSquare + 14 == finalSquare or\
-##                initialSquare - 18 == finalSquare or initialSquare - 14 == finalSquare):
-##                print "hello"
 
 
 class Square:
@@ -408,8 +452,7 @@ class Pieces:
                         counter += 1
                 else:
                     print "Error"
-
-        
+            
     
 ############### MAIN ###############
 def main():
@@ -479,10 +522,10 @@ def main():
         b.draw(top,left, color)
         b.king(color)
 
+
     root.mainloop()  
 
 
 
 if __name__ == "__main__":
     main()
-        
