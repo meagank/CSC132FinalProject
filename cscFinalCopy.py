@@ -22,13 +22,13 @@ class Background(Frame):
 
         # create the checkerboard
         #### ROW 1 ####
-        self.canvas.create_rectangle(30, 10, 122, 62, outline="black", fill="black", tags = "black")
+        rk1 = self.canvas.create_rectangle(30, 10, 122, 62, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(122, 10, 214, 62, outline="white", fill="white")
-        self.canvas.create_rectangle(214, 10, 306, 62, outline="black", fill="black", tags = "black")
+        rk2 = self.canvas.create_rectangle(214, 10, 306, 62, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(306, 10, 398, 62, outline="white", fill="white")
-        self.canvas.create_rectangle(398, 10, 490, 62, outline="black", fill="black", tags = "black")
+        rk3 = self.canvas.create_rectangle(398, 10, 490, 62, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(490, 10, 582, 62, outline="white", fill="white")
-        self.canvas.create_rectangle(582, 10, 674, 62, outline="black", fill="black", tags = "black")
+        rk4 = self.canvas.create_rectangle(582, 10, 674, 62, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(674, 10, 766, 62, outline="white", fill="white")
 
         #### ROW 2 ####
@@ -95,33 +95,40 @@ class Background(Frame):
 
         #### ROW 8 ####
         self.canvas.create_rectangle(30, 374, 122, 424, outline="white", fill="white")
-        self.canvas.create_rectangle(122, 374, 214, 424, outline="black", fill="black", tags = "black")
+        bk1 = self.canvas.create_rectangle(122, 374, 214, 424, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(214, 374, 306, 424, outline="white", fill="white")
-        self.canvas.create_rectangle(306, 374, 398, 424, outline="black", fill="black", tags = "black")
+        bk2 = self.canvas.create_rectangle(306, 374, 398, 424, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(398, 374, 490, 424, outline="white", fill="white")
-        self.canvas.create_rectangle(490, 374, 582, 424, outline="black", fill="black", tags = "black")
+        bk3 = self.canvas.create_rectangle(490, 374, 582, 424, outline="black", fill="black", tags = "black")
         self.canvas.create_rectangle(582, 374, 674, 424, outline="white", fill="white")
-        self.canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black", tags = "black")
+        bk4 = self.canvas.create_rectangle(674, 374, 766, 424, outline="black", fill="black", tags = "black")
 
         ##self.canvas.create_oval(100, 100, 150, 150, outline="red", fill="red")
         ##self.createToken(1, 1, "red")
         ##self.draw(1,1)
-
+        global bk
+        global bk1
+        global bk2
+        global bk3
+        global bk4
+        global rk
+        global rk1
+        global rk2
+        global rk3
+        global rk4
         self.canvas.pack(fill=BOTH, expand=1)
  
-    #King Feature
+     #King Feature
     def king(self, color):
-        if (finalVert == 0 and color == 0):
+        bk = [bk1, bk2, bk3, bk4]
+        rk = [rk1, rk2, rk3, rk4]
+        if (bk == [bk1, bk2, bk3, bk4] and color == 0):
             blue_king = True
             return "blue king"
-        else:
-            blue_king = False
             
-        if (finalVert == 7 and color == 1):
+        elif (rk == [rk1, rk2, rk3, rk4] and color == 1):
             red_king = True
-            return "red king"
-        else:
-            red_king = False  
+            return "red king"    
 
     def draw(self, top, left, color):
 
