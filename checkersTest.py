@@ -1,5 +1,5 @@
 ######################################################################
-# Name: Jakira Williams
+# Name: 
 # Date: March 13, 2020
 # Description: Checkers python game using Tkinter
 ######################################################################
@@ -288,39 +288,6 @@ class Board(Frame):
         self.canvas.tag_bind("token", "<B1-Motion>", self.drag)
 
     
-
-    '''
-
-    def playerTurn(event):
-        if self.was_moved == True:
-            self.was_moved = False
-            
-        OnTokenButtonRelease(event)
-        curr_itm = canvas.find_closest(event.x, event.y)[0]
-        itm_below = canvas.find_overlapping(event.x, event.y, event.x, event.y)[0]
-        itm_tuple = canvas.find_overlapping(event.x, event.y, event.x, event.y)
-
-        same_color = False
-        if ((self.last_itm > 64 and self.last_itm < 77) and (curr_itm > 64 and curr_itm < 77)) and self.illegal != True:
-            same_color = True
-            tkMessageBox.showinfo(title = None, message = "Player 1's Turn (Red)")
-            if self.was_moved != True:
-                delta_x = init_data["x"] - event.x
-                delta_y = init_data["y"] - event.y
-                canvas.move(init_data["item"], delta_x, delta_y)
-                self.was_moved = True
-
-
-        elif ((self.last_itm > 76 and self.last_itm < 90) and (curr_itm > 76 and curr_itm < 90)) and self.illegal != True:
-            same_color = True
-            tkMessageBox.showinfo(title = None, message = "Player 2's Turn (Blue)")
-            if self.was_moved != True:
-                delta_x = init_data["x"] - event.x
-                delta_y = init_data["y"] - event.y
-                canvas.move(init_data["item"], delta_x, delta_y)
-                self.was_moved = True
-                
-    '''
     
     def createToken(self, x, y, color):
         # create a checker piece at given coord
@@ -370,32 +337,6 @@ class Board(Frame):
             # increment counter by 1
             counter += 1
     '''
-
-    def PieceLogic(event):
-        blackTags = canvas.find_withtag("black")
-        current = canvas.find_closest(event.x,event.y)[0]
-        iBelow = canvas.find_overlapping(event.x,event.y,event.x,event.y)[0]
-        iTuple = canvas.find_overlapping(event.x,event.y,event.x,event.y)
-        self.kcoord = Coords(iBelow)
-
-        lastCoord = Coords(iBelow)
-
-        dRow = abs(lastCoord[1] - self.kcoord[1])
-        dCol = abs(lastCoord[0] - self.kcoord[0])
-        
-        for item in blackTags:
-            if ((item == itemB) and (len(iTuple) == 2) and dRow > 0 and dCol > 0):
-                s_dims = RectDims(lastCoord)
-                self.moved += 1
-                print "Moves: ", self.moved
-                if lastCoord[0] == 1 and current < 76 and same_color != True:
-                    canvas.itemconfig(current, fill = "orange", outline = "orange")
-                    self.red_king.append(current)
-                elif lastCoord[0] == 8 and current < 77 and same_color != True:
-                    canvas.itemconfig(current, fill = "gray", outline = "gray")
-                    self.blue_king.append(current)
-                    
-                        
 
 def main():
     root = Tk()
