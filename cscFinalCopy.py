@@ -109,7 +109,19 @@ class Background(Frame):
 
         self.canvas.pack(fill=BOTH, expand=1)
  
-
+    #King Feature
+    def king(self, color):
+        if (finalVert == 0 and color == 0):
+            blue_king = True
+            return "blue king"
+        else:
+            blue_king = False
+            
+        if (finalVert == 7 and color == 1):
+            red_king = True
+            return "red king"
+        else:
+            red_king = False    
 
     def draw(self, top, left, color):
 
@@ -168,6 +180,7 @@ class Background(Frame):
     def drag(self, event):
         dimensionVert = [36, 88, 140, 192, 244, 296, 348, 400]
         dimensionHor = [76, 168, 260, 352, 444, 536, 628, 720]
+        
         # handle dragging of an object 
         # determine move distance
         delta_x = event.x - self._drag_data["x"]
@@ -184,8 +197,9 @@ class Background(Frame):
             VCoord = dimensionVert[vert]
             if (abs(VCoord - event.y) < offsetx):
                 #print " VCoord ===== {}, event.y ====== {}, offsety ===== {}, vert ==== {}".format(VCoord, event.x, offsetx, vert)
-##                global finalVert
+                global finalVert
                 finalVert =  vert
+                
                 offsetx = abs(VCoord - event.y)
         for horiz in range(len(dimensionHor)):
             HCoord = dimensionHor[horiz]
@@ -395,18 +409,7 @@ class Pieces:
                 else:
                     print "Error"
 
-        #King Feature
-        if (finalVert == 0 and color == 0):
-            blue_king = True
-            return "blue king"
-        else:
-            blue_king = False
-            
-        if (finalVert == 7 and color == 1):
-            red_king = True
-            return "red king"
-        else:
-            red_king = False    
+        
     
 ############### MAIN ###############
 def main():
@@ -474,7 +477,7 @@ def main():
         # print (" location = {}, top = {}, bottom = {}, left = {}, right = {}").format(location, top, bottom, left, right)
         ##b.createToken(top, left, "red")
         b.draw(top,left, color)
-
+        b.king(color)
 
     root.mainloop()  
 
